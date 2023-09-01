@@ -64,6 +64,23 @@ const handleClick = () => {
 const handleClick2 = (name) => {
   console.log(`Hola ${name}`);
 };
+const clicAlert = (nombre) => {
+  alert(`Hola ${nombre}`);
+};
+
+//reactividad
+const contador = ref(0);
+const aumentarContador = () => {
+  contador.value++;
+};
+
+const disminuirContador = () => {
+  contador.value--;
+};
+
+const resetearContador = () => {
+  contador.value = 0;
+};
 </script>
 
 <template>
@@ -129,11 +146,40 @@ const handleClick2 = (name) => {
   <button @click="handleClick2('Emanuel')">Activame 3</button>
   <button v-on:click.right="handleClick2('Right')">Activame rigt</button>
   <button v-on:click.left="handleClick2('Left')">Activame left</button>
+  <button @click="clicAlert('Emanuel')">Activame ALERT</button>
 
-
+  <h1>EJemplo del contador tipico</h1>
+  <h2 class="contador" v-bind:style="{ color: contador < 0 ? 'red' : 'green' }">
+    {{ contador }}
+  </h2>
+  <button class="btn" @click="aumentarContador()">Aumentar</button>
+  <button class="btn btn-resetear" @click="resetearContador()">RESETEAR</button>
+  <button class="btn" @click="disminuirContador()">Disminuir</button>
+  //propiedades comuputadas
 </template>
+
 <style>
 h1 {
   color: rgb(41, 9, 160);
+}
+.contador {
+  font-weight: bold;
+  font-style: oblique;
+  display: flex;
+  justify-content: center;
+}
+.btn-resetear {
+  background-color: brown;
+  color: aliceblue;
+  font-weight: bold;
+}
+.btn {
+  height: 30px;
+  margin-left: 10px;
+  padding: 5px 5px 5px 5px;
+}
+.btn:hover {
+  background-color: rgba(52, 53, 51, 0.707);
+  color: aliceblue;
 }
 </style>
