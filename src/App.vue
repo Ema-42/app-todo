@@ -1,5 +1,5 @@
 <script setup>
-import { ref, reactive } from "vue";
+import { ref, reactive, computed } from "vue";
 const name = "Emanuel Cs ";
 const colorred = "color: red";
 const colorgreen = "color: green ";
@@ -81,6 +81,32 @@ const disminuirContador = () => {
 const resetearContador = () => {
   contador.value = 0;
 };
+//prop computed
+const classCounter = computed(() => {
+  if (contador.value === 0) {
+    return "zero";
+  }
+  if (contador.value > 0) {
+    return "positive";
+  }
+  if (contador.value < 0) {
+    return "negative";
+  }
+});
+//ejercicio 2
+const listadoNumeros = ref([]);
+
+const agregarNumeroListado = () => {
+  listadoNumeros.value.push(contador.value);
+};
+const classDisable = computed(() => {
+  if (listadoNumeros.value.includes(contador.value)) {
+    return "desactivado";
+  }
+});
+const resetearListado = () => {
+  listadoNumeros.value = [];
+};
 </script>
 
 <template>
@@ -139,7 +165,6 @@ const resetearContador = () => {
       </li>
     </template>
   </ul>
-
   <h1>Eventos</h1>
   <button v-on:click="handleClick">Activame</button>
   <button @click="handleClick">Activame 2</button>
@@ -149,37 +174,100 @@ const resetearContador = () => {
   <button @click="clicAlert('Emanuel')">Activame ALERT</button>
 
   <h1>EJemplo del contador tipico</h1>
-  <h2 class="contador" v-bind:style="{ color: contador < 0 ? 'red' : 'green' }">
+  <h2
+    class="contador"
+    v-bind:style="{
+      color: contador < 0 ? 'red' : contador === 0 ? 'white' : 'green',
+    }"
+  >
     {{ contador }}
   </h2>
-  <button class="btn" @click="aumentarContador()">Aumentar</button>
-  <button class="btn btn-resetear" @click="resetearContador()">RESETEAR</button>
-  <button class="btn" @click="disminuirContador()">Disminuir</button>
-  //propiedades comuputadas
+  <h2
+    class="contador"
+    :class="contador > 0 ? 'positive' : contador == 0 ? 'zero' : 'negative'"
+  >
+    {{ contador }}
+  </h2>
+  <div class="btn-group">
+    <button class="btn btn-danger" @click="disminuirContador()">
+      Disminuir -
+    </button>
+    <button class="btn btn-resetear" @click="resetearContador()">
+      RESETEAR CONTADOR
+    </button>
+    <button class="btn btn-resetear-listado" @click="resetearListado()">
+      RESETEAR LISTADO
+    </button>
+    <button class="btn btn-success" @click="aumentarContador()">
+      Aumentar +
+    </button>
+
+    <button
+      class="btn btn-agregar"
+      :class="classDisable"
+      :disabled="listadoNumeros.includes(contador) ? true : false"
+      @click="agregarNumeroListado()"
+    >
+      Agregar
+    </button>
+  </div>
+
+  <h3>Listado de items agregados</h3>
+  <ul v-for="(item, index) in listadoNumeros" :key="index">
+    <li>
+      <h2>{{ item }}</h2>
+    </li>
+  </ul>
+  <h1>Propiedad computadas</h1>
+  <p>
+    se genera dinamicamente en base al cambio de otra variable (se almacenan en
+    cache, se evalua cuando sus dependencias cambian)
+  </p>
+  <h2 class="contador" :class="classCounter">
+    {{ contador }}
+  </h2>
 </template>
 
 <style>
+.btn-agregar {
+  background-color: rgb(28, 136, 7);
+  color: aliceblue;
+  font-weight: bold;
+}
 h1 {
   color: rgb(41, 9, 160);
 }
+.desactivado {
+  background-color: red;
+}
+.positive {
+  color: rgb(14, 231, 14);
+}
+.negative {
+  color: rgb(255, 73, 73);
+}
+.zero {
+  color: white;
+}
 .contador {
+  font-size: 60px;
   font-weight: bold;
   font-style: oblique;
   display: flex;
   justify-content: center;
+}
+.contador:hover {
+  font-weight: lighter;
+  font-style: normal;
 }
 .btn-resetear {
   background-color: brown;
   color: aliceblue;
   font-weight: bold;
 }
-.btn {
-  height: 30px;
-  margin-left: 10px;
-  padding: 5px 5px 5px 5px;
-}
-.btn:hover {
-  background-color: rgba(52, 53, 51, 0.707);
+.btn-resetear-listado {
+  background-color: rgb(238, 113, 11);
   color: aliceblue;
+  font-weight: bold;
 }
 </style>
