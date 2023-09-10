@@ -1,0 +1,17 @@
+[
+    {
+        "id": 0,
+        "titulo": "comprar comida",
+        "estado": 1
+    },
+    {
+        "id": 1,
+        "titulo": "comprar ropa",
+        "estado": 2
+    },
+    {
+        "id": 2,
+        "titulo": "comprar drogas",
+        "estado": 0
+    }
+]
