@@ -32,7 +32,7 @@ const limpiarListaConincidencias = () => {
   <h5>Buscar</h5>
   <div>
     <nav class="navbar bg-body-tertiary">
-      <form class="d-flex col-md-12">
+      <div class="d-flex col-md-12">
         <a class="navbar-brand">
           <img
             src="https://cdn-icons-png.flaticon.com/512/1180/1180928.png"
@@ -56,7 +56,7 @@ const limpiarListaConincidencias = () => {
             Limpiar
           </button>
         </div>
-      </form>
+      </div>
     </nav>
   </div>
 

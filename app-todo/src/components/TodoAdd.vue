@@ -24,7 +24,7 @@ const nuevoItem = ref("");
       class="form-control form-control"
     />
     <button class="btn btn-primary" @click="agregarItem(nuevoItem, lista)">
-      Limpiar
+      Añadir
     </button>
   </div>
 </template>
