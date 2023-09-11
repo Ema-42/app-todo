@@ -44,7 +44,6 @@ const limpiarListaConincidencias = () => {
           class="form-control me-2"
           placeholder="Buscar tarea"
           v-model="inputTareaBuscar"
-          @keyup.enter="buscarTarea()"
         />
         <div class="btn-group" role="group" aria-label="Basic example">
           <button class="btn btn-primary px-1" @click="buscarTarea()">

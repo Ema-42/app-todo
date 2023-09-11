@@ -65,17 +65,13 @@ const cambiarColorSegunEstado = computed(() => {
 <template>
   <div>
     <div class="todo-body">
-      <div
-        class="input-group mb-3"
-        v-if="item.estado == estado || estado == 3"
-      >
+      <div class="input-group mb-3" v-if="item.estado == estado || estado == 3">
         <div
           :class="cambiarColorFondoSegunEstado"
           class="input-group-text"
           v-if="item.estado != 0"
         >
           <input
-            :class="cambiarColorFondoSegunEstado"
             class="form-check-input mt-0"
             type="checkbox"
             :checked="checkEstadoInicial"
@@ -106,7 +102,7 @@ const cambiarColorSegunEstado = computed(() => {
 
 <style>
 .item-active {
-  background-color: rgb(182, 255, 212);
+  background-color: rgb(154, 231, 186);
 }
 .item-deleted {
   background-color: rgb(255, 226, 164);
