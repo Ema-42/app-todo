@@ -7,23 +7,23 @@ defineProps({
   },
 });
 
-const agregarItem = (nuevoItem, lista) => {
-  lista.push({ id: lista.length + 1, titulo: nuevoItem, estado: 1 });
-  console.log(lista);
-};
 const nuevoItem = ref("");
+
+const agregarItem = (nuevaTarea, lista) => {
+  lista.push({ id: lista.length + 1, titulo: nuevaTarea, estado: 1 });
+  nuevoItem.value = "";
+};
 </script>
 <template>
   <h5>Añadir nueva tarea</h5>
   <div class="input-group mb-3">
-    <span class="input-group-text" id="inputGroup-sizing-default">Nueva</span>
     <input
       v-model="nuevoItem"
       placeholder="Ingresa una tarea"
       type="text"
-      class="form-control form-control"
+      class="form-control"
     />
-    <button class="btn btn-primary" @click="agregarItem(nuevoItem, lista)">
+    <button class="btn btn-primary" :disabled="nuevoItem===''" @click="agregarItem(nuevoItem, lista)">
       Añadir
     </button>
   </div>

@@ -61,6 +61,7 @@ const cambiarColorSegunEstado = computed(() => {
     return "btn-active";
   }
 });
+
 </script>
 <template>
   <div>
@@ -79,12 +80,10 @@ const cambiarColorSegunEstado = computed(() => {
           />
         </div>
         <input
-          :value="item.titulo"
           type="text"
-          readonly
+          v-model="item.titulo"
           :class="cambiarColorFondoSegunEstado"
           class="form-control"
-          aria-label="Text input with checkbox"
         />
         <button
           @click="modificarEstado()"
@@ -113,16 +112,15 @@ const cambiarColorSegunEstado = computed(() => {
 
 .btn-active,
 .btn-disable {
-  background-color: rgb(243, 108, 103);
+  background-color: rgb(219, 71, 66);
   color: white;
 }
 .btn-deleted {
-  background-color: rgb(228, 155, 46);
+  background-color: rgb(206, 119, 7);
   color: white;
 }
-.btn-action:hover {
-  background-color: rgb(219, 85, 81);
-  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.1);
+.btn-editar {
+  background-color: rgb(13, 130, 134);
   color: white;
 }
 .todo-body {

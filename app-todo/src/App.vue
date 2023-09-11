@@ -39,7 +39,8 @@ const lista = ref([
 <template>
   <div class="card">
     <div class="card-header">
-      <h1>Tareas</h1>
+      <h2 class="text-center">TAREAS</h2>
+      <span>by Emanuel</span>
     </div>
     <div class="contenedor">
       <Search :lista="lista"></Search>
@@ -57,13 +58,14 @@ const lista = ref([
 <style scoped>
 .contenedor {
   padding: 2rem;
+  background-color: rgb(252, 249, 233);
 }
 .card {
   margin: 1rem;
-  border: 1px solid rgb(106, 79, 226);
+  border: 1px solid rgb(224, 107, 53);
 }
-.card-header{
-  background-color: rgb(106, 79, 226);
+.card-header { 
+  background-color: rgb(212, 71, 5);
   color: rgb(233, 233, 233);
 }
 </style>

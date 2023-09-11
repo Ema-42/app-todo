@@ -16,7 +16,7 @@ const buscarTarea = () => {
     const inputTareaAux = inputTareaBuscar.value.split(" ");
     props.lista.forEach((tarea) => {
       inputTareaAux.forEach((palabra) => {
-        if (tarea.titulo.includes(palabra)) {
+        if (tarea.titulo.toLowerCase().includes(palabra.toLowerCase())) {
           listaCoincidencias.value.push(tarea);
         }
       });
@@ -26,38 +26,29 @@ const buscarTarea = () => {
 const limpiarListaConincidencias = () => {
   listaCoincidencias.value = [];
   inputTareaBuscar.value = "";
+  const fechaActual = new Date();
+  console.log(fechaActual);
 };
 </script>
 <template>
   <h5>Buscar</h5>
   <div>
-    <nav class="navbar bg-body-tertiary">
-      <div class="d-flex col-md-12">
-        <a class="navbar-brand">
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/1180/1180928.png"
-            width="25"
-            height="25"
-          />
-        </a>
-        <input
-          class="form-control me-2"
-          placeholder="Buscar tarea"
-          v-model="inputTareaBuscar"
-        />
-        <div class="btn-group" role="group" aria-label="Basic example">
-          <button class="btn btn-primary px-1" @click="buscarTarea()">
-            Buscar
-          </button>
-          <button
-            class="btn btn-secondary px-1"
-            @click="limpiarListaConincidencias()"
-          >
-            Limpiar
-          </button>
-        </div>
-      </div>
-    </nav>
+    <div class="mb-3 input-group">
+      <input
+        class="form-control"
+        placeholder="Buscar tarea"
+        v-model="inputTareaBuscar"
+      />
+      <button class="btn btn-primary px-1" @click="buscarTarea()">
+        Buscar
+      </button>
+      <button
+        class="btn btn-secondary px-1"
+        @click="limpiarListaConincidencias()"
+      >
+        Limpiar
+      </button>
+    </div>
   </div>
 
   <div>
